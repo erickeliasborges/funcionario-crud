@@ -1,0 +1,70 @@
+<mat-card>
+
+  <!-- Título -->
+  <mat-card-title class="d-flex justify-content-center pt-1">Funcionário / Pesquisa</mat-card-title>
+
+  <!-- Form -->
+  <mat-card-content>
+
+    <!-- Tabela -->
+    <div>
+      <table mat-table [dataSource]="employees" class="full-width">
+
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.name}} </td>
+        </ng-container>
+
+        <!-- Surname Column -->
+        <ng-container matColumnDef="surname">
+          <th mat-header-cell *matHeaderCellDef> Sobrenome </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.surname}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> E-mail </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.email}} </td>
+        </ng-container>
+
+        <!-- NIS Column -->
+        <ng-container matColumnDef="nis">
+          <th mat-header-cell *matHeaderCellDef> N.I.S. </th>
+          <td mat-cell *matCellDef="let employee"> {{employee.nis}} </td>
+        </ng-container>
+
+        <!-- Ações -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let employee" style="width: 150px;">
+            <button mat-icon-button title="Editar" class="mat-button-hover-actions" (click)="onClickEditar(employee.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button title="Remover" class="mat-button-hover-actions" (click)="onClickExcluir(employee.id)">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <!-- Header -->
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+
+        <!-- Rows -->
+        <tr mat-row  *matRowDef="let row; columns: columns;"></tr>
+
+      </table>
+    </div>
+  </mat-card-content>
+
+</mat-card>
+
+<div class="position-absolute bottom-0 end-0 p-3">
+  <button type="button" class="btn btn-primary" (click)="onClickNovo()"> Novo </button>
+</div>

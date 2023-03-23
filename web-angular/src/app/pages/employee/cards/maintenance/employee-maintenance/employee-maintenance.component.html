@@ -1,0 +1,53 @@
+<mat-card class="d-m">
+
+  <!-- Título -->
+  <mat-card-title class="d-flex justify-content-center pt-1">Funcionário / Manuteção</mat-card-title>
+
+  <!-- Form -->
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="d-flex row">
+
+        <!-- Name -->
+        <mat-form-field class="pt-1" appearance="fill">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name" required type="text">
+          <mat-error>{{name.errors | error}}</mat-error>
+        </mat-form-field>
+
+        <!-- Surname -->
+        <mat-form-field class="pt-1" appearance="fill">
+          <mat-label>Sobrenome</mat-label>
+          <input matInput formControlName="surname" required type="text">
+          <mat-error>{{surname.errors | error}}</mat-error>
+        </mat-form-field>
+
+        <!-- Email -->
+        <mat-form-field class="pt-1" appearance="fill">
+          <mat-label>E-mail</mat-label>
+          <input #emailInput matInput formControlName="email" required placeholder="seunome@exemplo.com" type="email">
+          <mat-error>{{email.errors | error}}</mat-error>
+        </mat-form-field>
+
+        <!-- NIS -->
+        <mat-form-field class="pt-1" appearance="fill">
+          <mat-label>N.I.S.</mat-label>
+          <input matInput formControlName="nis" required type="number">
+          <mat-error>{{nis.errors | error}}</mat-error>
+        </mat-form-field>
+
+      </div>
+
+      <mat-card-actions class="justify-content-end">
+        <b>ID: </b> {{form.controls['id'].value || ' Nada (novo registro)'}}
+        <button type="button" class="btn btn-primary ms-1" (click)="onClickVoltarPesquisa()"> Voltar para pesquisa </button>
+        <button type="button" class="btn btn-primary ms-1" (click)="onClickLimpar()"> Limpar </button>
+        <button *ngIf="form.controls['id'].value" type="button" class="btn btn-danger ms-1" (click)="onClickExcluir(form.controls['id'].value)"> Excluir </button>
+        <button type="submit" class="btn btn-success ms-1"> Gravar </button>
+      </mat-card-actions>
+
+    </form>
+  </mat-card-content>
+
+</mat-card>
